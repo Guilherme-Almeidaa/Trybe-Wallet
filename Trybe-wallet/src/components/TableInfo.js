@@ -17,10 +17,11 @@ class TableInfo extends React.Component {
         }
 
         this.deleteExpense = this.deleteExpense.bind(this);
-        this.editExpense = this.editExpense.bind(this);
-        this.isSelected = this.isSelected.bind(this);
+        
+       
     }
 
+   
 
 
     deleteExpense(index) {
@@ -38,14 +39,7 @@ class TableInfo extends React.Component {
 
     }
 
-    isSelected(e) {
-
-        if (e.target.className === 'item-table is-selected') {
-            e.target.className = ''
-        } else {
-            e.target.className = 'item-table is-selected'
-        }
-    }
+   
 
     selectedImgCurrency(coin) {
         if (coin === 'USD') {
@@ -63,12 +57,6 @@ class TableInfo extends React.Component {
 
     
 
-    editExpense () {
-        const {edit} = this.state
-        this.setState({
-            edit:!edit
-        })
-    }
 
     render() {
         const { expenses } = this.props
@@ -87,14 +75,14 @@ class TableInfo extends React.Component {
                         <td>Câmbio utilizado</td>
                         <td>Valor convertido</td>
                         <td>Moeda de conversão</td>
-                        <td>Editar/Excluir</td>
+                        <td>Excluir</td>
                     </tr>
                 </thead>
                 {expenses.map((item, index) => {
                     const { currency, exchangeRates } = item
                     const convert = (exchangeRates[currency].ask * item.value).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
                     return (
-                        <tbody  onClick={this.isSelected} key={index} >
+                        <tbody  key={index} >
                             <tr className='item-table is-edit'  >
                                 <td>{item.description}</td>
                                 <td>{item.tag}</td>
@@ -105,7 +93,7 @@ class TableInfo extends React.Component {
                                 <td>{convert}</td>
                                 <td>Real</td>
                                 <td>
-                                    <button onClick={this.editExpense} className="edit button is-warning" type="button"></button>
+                                   
                                     <button className="delete- button is-danger" type="button" onClick={() => this.deleteExpense(index)} >X</button>
                                 </td>
                             </tr>

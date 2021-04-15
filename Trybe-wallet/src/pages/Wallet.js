@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 class Wallet extends React.Component {
 
  
+
+
   render() {
     return (
       <div className='header-complete'  >
